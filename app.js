@@ -18,6 +18,8 @@ const druida = new Personagem("obin", 150 ,15)
 const guerreiro = new Personagem("thorfin",60,20)
 const arqueiro = new Personagem("legolas",50,40)
 const mago = new Personagem("Gandalf",40,70)
+const assasino = new Personagem("mortis",30.60)
+const clerigo = new Personagem("Ezra", 40,20)
+const monge =  new Personagem("tatsu",60,30)
 
-
-
+console.log(monge)
