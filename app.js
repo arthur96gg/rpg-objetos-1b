@@ -8,6 +8,7 @@ class Personagem {
         personagem.recebeDano(this.ataque)
     }
     recebeDano(quntidade) {
+        let dano = quntidade - this.ataque - dano
         this.vida = this.vida - quntidade
         if (this.vida <= 0)
             this.vida = "morreu"
@@ -29,6 +30,6 @@ const assasino = new Personagem("mortis", 30, 50)
 const clerigo = new Personagem("Ezra", 40, 20)
 const monge = new Personagem("tatsu", 60, 30)
 
-mago.causaDano(assasino)
+mago.causaDano(assasino)    
 assasino.mostraStatus()
 console.log(assasino.estaVivo())
