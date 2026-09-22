@@ -1,75 +1,91 @@
 class Personagem {
     constructor(nome, vida, ataque, defesa) {
         this.nome = nome,
-        this.vida = vida,
-        this.vidaMax = vida,
-        this.ataque = ataque,
-        this.defesa = defesa
+            this.vida = vida,
+            this.vidaMaxima = vida,
+            this.ataque = ataque,
+            this.defesa = defesa
     }
 
-curar(quantidade) {
+    curar(quantidade){
         this.vida = this.vida + quantidade
 
-        if(this.vida > this.vidaMax) {
-            this.vida = this.vidaMax
+        if(this.vida > this.vidaMaxima){
+            this.vida = this.VidaMaxima
         }
     }
 
     causaDano(personagem) {
-                                                                                                                                                                                                                                                                                                                            personagem.recebeDano(this.ataque)
+        personagem.recebeDano(this.ataque)
     }
 
-    recebeDano(quantidade) {
+    recebeDano(personagem) {
         let dano = quantidade - this.defesa
 
-        if(quantidade < this.vida) {
+        if(dano < 0){
             dano = 0
         }
 
         this.vida = this.vida - dano
-
         if (this.vida <= 0) {
-            this.vida = "morreu"
-    }        
+            this.vida = "morreu(0)"
         }
+    }
 
-        estaVivo(){
-            return this.vida > 0
-        }
+    estaVivo(){
+        return this.vida > 0
+    }
 
-        mostraStatus(){
-            console.log(this.nome + " | vida: " + this.vida)
-        }
+    mostraStatus(){
+        console.log(this.nome + " | Vida: " + this.vida)
+    }
 }
 
-class  Guerreiro extends Personagem {
+class Guerreiro extends Personagem {
     constructor(nome){
-super(nome, 70, 35, 8)
+        super(nome, 70, 35, 8)
     }
-    golpePesado(personagem) {
-        this.recebeDano(this.ataque * 2)
+    golpePesado(personagem){
+        personagem.recebeDano(this.ataque * 2)
     }
-    }
+}
 
-const druida = new Personagem("Obin", 55, 35, 10)
-const guerreiro = new Guerreiro("Thorin", 60, 20, 15)
+const guerreiro = new Guerreiro("Thorin", 60, 20, 18)
+const druida = new Personagem("Obin", 150, 15, 10)
+const arqueiro = new Personagem("Legolas", 80, 25, 12)
 const mago = new Personagem("Gandalfe", 60, 35, 5)
-const arqueiro = new Personagem("Legolas", 80, 25, 10)
-const dragao = new Personagem("Kragor", 55, 30, 20)
-const feiticeira = new Personagem("Wanda", 70, 35, 15)
-const elfa = new Personagem("Thia", 70, 15, 10)
+const furtive = new Personagem("Kaelen", 45, 14, 8)
+const paladino = new Personagem("Eldrin", 70, 8, 20)
+const necromante = new Personagem("Malakor", 35, 16, 6)
 
-const personagens  = [
+const personagens = [
     druida,
     guerreiro,
     mago,
     arqueiro,
-    dragao,
-    feiticeira,
-    elfa
+    furtive,
+    paladino,
+    necromante
 ]
 personagens.forEach(function(personagem){
     personagem.mostraStatus()
 })
 
- console.log(guerreiro)
+let turno = 1
+let jogadorAtual = 0
+
+function proximoTurno(){
+    turno = turno + 1
+    jogadorAtual = jogadorAtual === 0 ? 1 : 0
+}
+
+const VidaGuerreiro = document.getElementById("vida-guerreiro")
+VidaGuerreiro.innerText = guerreiro.vida
+
+const ataqueGuerreiro = document.getElementById("ataque-guerreiro")
+ataqueGuerreiro.innerText = guerreiro.ataque
+
+const guerreiroAtacar = document.getElementById("guerreiro-atacar")
+guerreiroAtacar.addEventListener("click", () => {
+    alert("botao pressionado")
+})
